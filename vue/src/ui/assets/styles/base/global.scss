@@ -1,0 +1,32 @@
+html, body {
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--background);
+  box-sizing: border-box;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  font-kerning: normal;
+  font-size: var(--font-base);
+  font-variant-ligatures: contextual common-ligatures;
+  font-weight: var(--font-regular);
+  letter-spacing: -0.004em;
+  line-height: var(--line-height);
+  text-rendering: optimizeLegibility;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: calc(1100px - var(--space-4x));
+  padding: 0 var(--space-4x);
+  width: 100%;
+}
+
+@media(min-width: 900px) {
+  .container {
+    margin: 0 auto;
+    max-width: calc(1100px - var(--space-8x));
+    padding: 0 var(--space-8x);
+    width: 100%;
+  }
+}
+

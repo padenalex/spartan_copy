@@ -1,0 +1,33 @@
+version: "2"
+services:
+  base_back:
+    image: node:lts-alpine3.12
+    volumes:
+      - swish_nodemodules_back:/home/api/node_modules
+      - ./api:/home/api
+    working_dir: /home/api
+  generate_keys:
+    extends:
+      service: base_back
+    command: node generateKeypair.js
+  install_back:
+    extends:
+      service: base_back
+    command: npm install --silent
+
+  base_front:
+    image: node:lts-alpine3.12
+    volumes:
+      - swish_nodemodules_front:/home/vue/node_modules
+      - ./vue:/home/vue
+    working_dir: /home/vue
+  install_front:
+    extends:
+      service: base_front
+    command: yarn install --silent
+
+volumes:
+  swish_nodemodules_front:
+    external: true
+  swish_nodemodules_back:
+    external: true

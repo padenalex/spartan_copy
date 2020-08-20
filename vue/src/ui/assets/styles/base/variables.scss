@@ -1,0 +1,91 @@
+:root {
+    // Colors
+    --error-dark   : #dc0000;
+    --error-light  : #f00000;
+    --error        : #ff0000;
+    --success-dark : #0054c6;
+    --success-light: #0068F4;
+    --success      : #005edc;
+    --warning-dark : #DBB800;
+    --warning-light: #FFD600;
+    --warning      : #EDC700;
+
+    // Dark theme colors
+    &[theme="dark"] {
+      --accent    : #151515;
+      --accent-1  : #222222;
+      --accent-2  : #515151;
+      --accent-3  : #a1a1a0;
+      --background: #0f0f0f;
+      --foreground: #f0f0f0;
+    }
+
+    // Light theme colors
+    &[theme="light"] {
+      --accent    : #f0f0f0;
+      --accent-1  : #dddddd;
+      --accent-2  : #bdbdbd;
+      --accent-3  : #828282;
+      --background: #fcfcfc;
+      --foreground: #151515;
+    }
+
+    &[theme="system"] {
+      @media (prefers-color-scheme: light) {
+        --accent    : #f0f0f0;
+        --accent-1  : #dddddd;
+        --accent-2  : #bdbdbd;
+        --accent-3  : #828282;
+        --background: #fcfcfc;
+        --foreground: #151515;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        --accent    : #151515;
+        --accent-1  : #222222;
+        --accent-2  : #515151;
+        --accent-3  : #a1a1a0;
+        --background: #0f0f0f;
+        --foreground: #f0f0f0;
+      }
+    }
+
+    // Spacing
+    --space    : 6px;
+    --space-2x : calc(var(--space) * 2);
+    --space-4x : calc(var(--space) * 4);
+    --space-8x : calc(var(--space) * 8);
+    --space-16x: calc(var(--space) * 16);
+    --space-32x: calc(var(--space) * 32);
+
+    // Line height
+    --line-height-sm  : 1;
+    --line-height-base: 1.25;
+    --line-height-md  : 1.5;
+
+    // Font weight
+    --thin       : 100;
+    --extra-light: 200;
+    --light      : 300;
+    --regular    : 400;
+    --medium     : 500;
+    --semi-bold  : 600;
+    --bold       : 700;
+    --extra-bold : 800;
+    --black      : 900;
+
+    // Font size
+    --font-xs  : 11px;
+    --font-sm  : 13px;
+    --font-base: 15px;
+    --font-md  : 17px;
+    --font-h6  : 19px;
+    --font-h5  : 21px;
+    --font-h4  : 25px;
+    --font-h3  : 29px;
+    --font-h2  : 33px;
+    --font-h1  : 37px;
+
+    // Font family
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}

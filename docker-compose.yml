@@ -1,0 +1,73 @@
+version: "3.8"
+services:
+  swish_database:
+    container_name: swish_db
+    image: postgres:9.6.18-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: swish
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: swish
+    networks:
+      - swish_backend
+    ports:
+      - 1000:5432
+    expose:
+      - 1000
+
+  swish_api:
+    container_name: swish_api
+    image: node:lts-alpine3.12
+    volumes:
+      - swish_nodemodules_back:/home/api/node_modules
+      - ./api:/home/api
+    working_dir: /home/api
+    depends_on:
+      - swish_database
+    networks:
+      - swish_backend
+      - swish_frontend
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://swish:secret@swish_db/swish
+    ports:
+      - 2000:2000
+    expose:
+      - 2000
+    command: npm start
+
+  swish_vue:
+    container_name: swish_vue
+    image: node:lts-alpine3.12
+    volumes:
+      - swish_nodemodules_front:/home/vue/node_modules
+      - ./vue:/home/vue
+    working_dir: /home/vue
+    depends_on:
+      - swish_api
+    networks:
+      - swish_frontend
+    environment:
+      NODE_ENV: development
+      VUE_APP_API_BASE_URL: http://localhost:2000/api
+    ports:
+      - 3000:3000
+      - 8081:8081
+    expose:
+      - 8081
+      - 3000
+    command: yarn serve
+
+volumes:
+  swish_nodemodules_front:
+    external: true
+  swish_nodemodules_back:
+    external: true
+
+networks:
+  swish_backend:
+    name: backend
+    driver: bridge
+  swish_frontend:
+    name: frontend
+    driver: bridge
